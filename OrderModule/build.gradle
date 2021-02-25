@@ -1,0 +1,62 @@
+if(isRelease){
+    apply plugin:'com.android.library'
+}else {
+    apply plugin:'com.android.application'
+}
+apply plugin:'kotlin-android'
+def androidId=rootProject.ext.androidId
+def suport=rootProject.ext.dependencies
+def appId=rootProject.ext.appId
+
+android {
+    compileSdkVersion androidId.compileSdkVersion
+    buildToolsVersion androidId.buildToolsVersion
+
+    defaultConfig {
+        if(!isRelease){
+            applicationId appId.order
+        }
+
+        minSdkVersion androidId.minSdkVersion
+        targetSdkVersion androidId.targetSdkVersion
+        versionCode androidId.versionCode
+        versionName androidId.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets{
+        main{
+            if(isRelease){
+                manifest.srcFile 'src/main/AndroidManifest.xml'
+                java{
+                    exclude '**/debug/**'
+                }
+            }else {
+                manifest.srcFile 'src/main/debug/AndroidManifest.xml'
+            }
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    suport.each { k, v ->
+        implementation v
+    }
+    implementation project(":common")
+}

@@ -1,0 +1,38 @@
+//添加多个自定义属性
+ext{
+    isRelease=true
+
+//建立Map 对象存储
+    androidId=[
+            compileSdkVersion :30,
+            buildToolsVersion :"30.0.2",
+            minSdkVersion :16,
+            targetSdkVersion :30,
+            versionCode :1,
+            versionName :"1.0"
+    ]
+    appId=[
+            app :"com.example.aroute",
+            library:"com.example.library",
+            "order":"com.example.order",
+            "person":"com.example.person",
+    ]
+    url=[
+            "debug":"123",
+            "release":"456"
+    ]
+    supportkotlin="1.3.72"
+    supportcore="1.2.0"
+    appcompat="1.1.0"
+    constraintlayout="1.1.3"
+    recycleview="1.1.0"
+    dependencies=[
+         "kotlinstdlib" :"org.jetbrains.kotlin:kotlin-stdlib:$supportkotlin",
+         "corektx" :"androidx.core:core-ktx:$supportcore",
+         "appcompat" :"androidx.appcompat:appcompat:$appcompat",
+         "constraintlayout" :"androidx.constraintlayout:constraintlayout:$constraintlayout",
+         "recycleview" :"androidx.recyclerview:recyclerview:$recycleview"
+    ]
+
+
+}
