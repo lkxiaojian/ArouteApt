@@ -11,5 +11,24 @@
         app:layout_constraintTop_toTopOf="parent"
         android:text="person"
         />
+    <Button
+        android:id="@+id/bt_main"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:text="跳转 Main"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        />
+
+    <Button
+        android:id="@+id/bt_order"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:text="跳转 order"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

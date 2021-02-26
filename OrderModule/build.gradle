@@ -4,6 +4,8 @@ if(isRelease){
     apply plugin:'com.android.application'
 }
 apply plugin:'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
 def androidId=rootProject.ext.androidId
 def suport=rootProject.ext.dependencies
 def appId=rootProject.ext.appId
