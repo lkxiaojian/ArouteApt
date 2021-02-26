@@ -1,9 +1,12 @@
+import kotlin.annotation.AnnotationRetention
+
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
 }
 apply plugin:'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 def androidId=rootProject.ext.androidId
 def appId=rootProject.ext.appId
@@ -20,6 +23,18 @@ android {
         versionCode androidId.versionCode
         versionName androidId.versionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        kapt {
+            arguments {
+                arg("content", "hello333 apt")
+            }
+        }
+//        javaCompileOptions {
+//            annotationProcessorOptions {
+//                arguments = [content : 'hello444 apt']
+//            }
+//        }
+
     }
     // 签名配置（隐形坑：必须写在buildTypes之前）
     signingConfigs {
@@ -108,6 +123,8 @@ dependencies {
         implementation v
     }
     implementation project(":common")
+    implementation project(":annotation")
+    kapt project(":compiler")
     if(isRelease){
         implementation project(":OrderModule")
         implementation project(":PersonModule")
