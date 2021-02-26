@@ -9,10 +9,8 @@ import javax.lang.model.element.TypeElement
 import javax.lang.model.util.Elements
 import javax.lang.model.util.Types
 import javax.tools.Diagnostic
-
-
 @AutoService(Processor::class)
-@SupportedAnnotationTypes ("com.example.annotation.ARouterTmp")
+@SupportedAnnotationTypes ("com.example.annotation.ARouter")
 @SupportedSourceVersion(SourceVersion.RELEASE_7)
 @SupportedOptions("content")
 class ARouterProcessor : AbstractProcessor() {
