@@ -111,6 +111,21 @@ class ARouterProcessor : AbstractProcessor() {
 //        }
 //        }
 
+                /**
+                 *  javaPot
+                 *  $L 字面量 "int value=$L",10
+                 *  $S 字符串 $S,"hello javaPot"
+                 *  ST 类，接口 $T,MainActivity
+                 *  $N 变量 user.$N ,name
+                 *  MethodSpec 代表一个构造函数或方法说明
+                 *  TypeSpec 代表一个类，接口或者枚举说明
+                 *  FieldSpec 字段的变量，字段的声明
+                 *  JavaFile 包装的一个顶级java文件
+                 *  ParameterSpec  用来创建参数
+                 *  AnnotationSpec 用来创建注解
+                 *  ClassName 用来包装一个类
+                 *  TypeName 类型，如在返回类型是使用TypeName.VOID
+                 */
                 messager?.printMessage(Diagnostic.Kind.NOTE, "被注解的类有：$className \r\n")
                 val method = MethodSpec.methodBuilder("findTargetClass")
                     .addModifiers(Modifier.PUBLIC, Modifier.STATIC)
@@ -132,10 +147,7 @@ class ARouterProcessor : AbstractProcessor() {
             } catch (e: IOException) {
                 messager?.printMessage(Diagnostic.Kind.NOTE, "error：${e.message.toString()} ")
             }
-
-
         }
-
         return true
     }
 
