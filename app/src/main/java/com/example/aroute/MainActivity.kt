@@ -4,7 +4,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.annotation.ARouter
-import com.example.annotation.ARouterTmp
 import com.example.ordermodule.OrderActivity
 import kotlinx.android.synthetic.main.activity_main.*
 @ARouter(path = "main/MainActivity")

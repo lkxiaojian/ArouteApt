@@ -11,14 +11,14 @@ import javax.lang.model.util.Types
 import javax.tools.Diagnostic
 @AutoService(Processor::class)
 @SupportedAnnotationTypes ("com.example.annotation.ARouter")
-@SupportedSourceVersion(SourceVersion.RELEASE_7)
+@SupportedSourceVersion(SourceVersion.RELEASE_8)
 @SupportedOptions("content")
 class ARouterProcessor : AbstractProcessor() {
     private var elementUtils: Elements? = null
     private var typeUtils: Types? = null
     private var messager: Messager? = null
     private var filer: Filer? = null
-
+//
     //初始化
     override fun init(processingEnv: ProcessingEnvironment?) {
         super.init(processingEnv)
@@ -29,6 +29,15 @@ class ARouterProcessor : AbstractProcessor() {
         messager?.printMessage(Diagnostic.Kind.NOTE, content)
         filer = processingEnv?.filer
     }
+
+
+//    override fun getSupportedAnnotationTypes(): MutableSet<String> {
+//        return mutableSetOf(ARouter::class.java.name)
+//    }
+//    override fun getSupportedSourceVersion(): SourceVersion {
+//        return SourceVersion.RELEASE_8
+//    }
+
     override fun process(
         annotations: MutableSet<out TypeElement>?,
         roundEnv: RoundEnvironment?
@@ -42,11 +51,11 @@ class ARouterProcessor : AbstractProcessor() {
             val packageName = elementUtils?.getPackageOf(it)?.qualifiedName
             // 获取简单类名
             val className = it.simpleName
-            messager?.printMessage(Diagnostic.Kind.NOTE, "被注解的类有：$className")
+            messager?.printMessage(Diagnostic.Kind.NOTE, "被注解的类有：$className \r\n")
             // 最终想生成的类文件名
             val finalClassName = "$className$\$ARouter"
             try {
-                val createSourceFile = filer?.createSourceFile("$packageName . $finalClassName")
+                val createSourceFile = filer?.createSourceFile("$packageName.$finalClassName")
                 val writer = createSourceFile?.openWriter()
                 // 设置包名
                 writer?.write("package $packageName;\n")
@@ -66,6 +75,7 @@ class ARouterProcessor : AbstractProcessor() {
                 // 最后结束别忘了
                 writer?.close()
             } catch (e: IOException) {
+                messager?.printMessage(Diagnostic.Kind.NOTE, "被注解的类有：${e.message}")
                 e.printStackTrace()
             }
 

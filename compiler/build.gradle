@@ -1,13 +1,13 @@
 import javax.tools.JavaCompiler
-
 plugins {
     id 'java-library'
     id 'kotlin'
+    id 'kotlin-kapt'
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_1_7
-    targetCompatibility = JavaVersion.VERSION_1_7
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
 }
 // java控制台输出中文乱码
 tasks.withType(JavaCompile) {
@@ -17,7 +17,7 @@ tasks.withType(JavaCompile) {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    compileOnly'com.google.auto.service:auto-service:1.0-rc7'
-    annotationProcessor'com.google.auto.service:auto-service:1.0-rc7'
-    implementation project(":annotation")
+    implementation  'com.google.auto.service:auto-service:1.0-rc7'
+    kapt'com.google.auto.service:auto-service:1.0-rc7'
+    api project(":annotation")
 }
